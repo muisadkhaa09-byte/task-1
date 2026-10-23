@@ -4,111 +4,314 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alfalah Parent Portal</title>
+  <meta name="theme-color" content="#176b45">
+  <title>Alfalah Parent Portal | Rapor Digital</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="header">
-    <h1>Alfalah Parent Portal</h1>
-    <p>Portal informasi akademik</p>
-  </header>
+  <div class="app">
 
-  <main class="container">
-        <!-- Formulir Identitas Siswa -->
-    <section class="card student-form">
-      <h2>Identitas Siswa</h2>
-      <p>Silakan isi data siswa untuk melihat informasi akademik.</p>
-
-      <form id="student-form">
-        <div class="form-group">
-          <label for="student-name">Nama Murid</label>
-          <input
-            type="text"
-            id="student-name"
-            name="student-name"
-            placeholder="Masukkan nama lengkap murid"
-            required
-          >
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo">A</div>
+        <div>
+          <h2>Alfalah Portal</h2>
+          <p>Portal Akademik</p>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="student-class">Kelas</label>
-          <select id="student-class" name="student-class" required>
-            <option value="">-- Pilih Kelas --</option>
-            <option value="X-A">X-A (Sepuluh Putra)</option>
-            <option value="X-A">X-B (Sepuluh Putri)</option>
-            <option value="XI-A">XI-A (Sebelas Putra)</option>
-            <option value="XI-B">XI-B (Sebelas Putri)</option>
-            <option value="XII-A">XII-A (Dua belas Putra)</option>
-            <option value="XII-A">XII-B (Dua Belas Putri)</option>
-          </select>
-        </div>
+      <p class="nav-label">MENU UTAMA</p>
 
-        <div class="form-group">
-          <label for="student-major">Jurusan</label>
-          <select id="student-major" name="student-major" required>
-            <option value="">-- Pilih Jurusan --</option>
-            <option value="IPA">IPA</option>
-            <option value="Bahasa">Bahasa</option>
-          </select>
-        </div>
-
-        <button type="submit" class="submit-btn">
-          Simpan Identitas
+      <nav class="navigation">
+        <button class="nav-link active" data-page="dashboard">
+          <span>▦</span> Dashboard
         </button>
-      </form>
+        <button class="nav-link" data-page="students">
+          <span>♙</span> Data Siswa
+        </button>
+        <button class="nav-link" data-page="report">
+          <span>▤</span> Rapor Digital
+        </button>
+        <button class="nav-link" data-page="attendance">
+          <span>✓</span> Absensi
+        </button>
+      </nav>
 
-      <div id="student-result" class="student-result" hidden>
-        <h3>Data Siswa</h3>
-        <p>Nama: <span id="result-name"></span></p>
-        <p>Kelas: <span id="result-class"></span></p>
-        <p>Jurusan: <span id="result-major"></span></p>
+      <div class="sidebar-footer">
+        <div class="footer-icon">i</div>
+        <div>
+          <strong>Portal Akademik</strong>
+          <p>Versi demonstrasi</p>
+        </div>
       </div>
-    </section>
-    <section class="welcome">
-      <h2>Ringkasan Akademik</h2>
-      <p>Selamat datang di prototipe rapor digital.</p>
-    </section>
+    </aside>
 
-    <section class="summary">
-      <article class="card">
-        <p>Semester</p>
-        <h3>Ganjil 2026/2027</h3>
-      </article>
-      <article class="card">
-        <p>Rata-rata Nilai</p>
-        <h3 id="average">0</h3>
-      </article>
-    </section>
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle"
+          aria-label="Buka menu">☰</button>
 
-    <section class="card">
-      <h2>Nilai Mata Pelajaran</h2>
+        <div>
+          <p class="eyebrow">PORTAL INFORMASI AKADEMIK</p>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
 
-      <label for="semester">Pilih semester:</label>
-      <select id="semester">
-        <option value="ganjil">Ganjil</option>
-        <option value="genap">Genap</option>
-      </select>
+        <div class="profile">
+          <div class="avatar">A</div>
+          <div class="profile-info">
+            <strong>Admin Demo</strong>
+            <span>Mode demonstrasi</span>
+          </div>
+        </div>
+      </header>
 
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Mata Pelajaran</th>
-              <th>Nilai</th>
-            </tr>
-          </thead>
-          <tbody id="grade-list"></tbody>
-        </table>
-      </div>
-    </section>
+      <!-- DASHBOARD -->
+      <section class="page active" id="dashboard">
+        <div class="welcome-banner">
+          <div>
+            <p class="welcome-label">SELAMAT DATANG</p>
+            <h2>Rapor digital, lebih praktis.</h2>
+            <p>
+              Pantau nilai dan kehadiran siswa dalam satu tempat.
+            </p>
+          </div>
+          <div class="welcome-icon">🎓</div>
+        </div>
 
-    <p class="notice">
-      DEMO: Seluruh nilai merupakan data simulasi.
-      Bukan rapor resmi sekolah.
-    </p>
-  </main>
+        <div class="section-heading">
+          <div>
+            <h2>Ringkasan Akademik</h2>
+            <p>Data dari siswa yang sedang dipilih.</p>
+          </div>
+          <select id="dashboardStudent" aria-label="Pilih siswa"></select>
+        </div>
 
-  <script src="script.js"></script>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon green">▤</div>
+            <p>Mata Pelajaran</p>
+            <h3 id="subjectCount">0</h3>
+            <span>Jumlah mata pelajaran</span>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon blue">↗</div>
+            <p>Rata-rata Nilai</p>
+            <h3 id="averageScore">0</h3>
+            <span>Nilai akhir semester</span>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon orange">✓</div>
+            <p>Kehadiran</p>
+            <h3 id="attendanceRate">0%</h3>
+            <span>Persentase kehadiran</span>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Nilai Mata Pelajaran</h3>
+                <p>Ringkasan nilai akhir</p>
+              </div>
+              <button class="text-button" data-go="report">
+                Lihat rapor →
+              </button>
+            </div>
+
+            <div id="dashboardSubjects" class="subject-list"></div>
+          </article>
+
+          <article class="panel student-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Profil Siswa</h3>
+                <p>Identitas akademik</p>
+              </div>
+            </div>
+            <div id="studentProfile"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- DATA SISWA -->
+      <section class="page" id="students">
+        <div class="section-heading">
+          <div>
+            <h2>Data Siswa</h2>
+            <p>Pilih siswa untuk melihat informasi akademiknya.</p>
+          </div>
+        </div>
+
+        <article class="panel">
+          <div class="toolbar">
+            <input id="studentSearch" type="search"
+              placeholder="Cari nama atau kelas..."
+              aria-label="Cari siswa">
+            <span id="studentTotal" class="result-count"></span>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nama Siswa</th>
+                  <th>NIS Demo</th>
+                  <th>Kelas</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="studentTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <!-- RAPOR DIGITAL -->
+      <section class="page" id="report">
+        <div class="section-heading">
+          <div>
+            <h2>Rapor Digital</h2>
+            <p>Rekap hasil belajar siswa per semester.</p>
+          </div>
+          <button class="primary-button" id="printReport">
+            Cetak / Simpan PDF
+          </button>
+        </div>
+
+        <article class="panel report-controls">
+          <div class="field">
+            <label for="reportStudent">Pilih Siswa</label>
+            <select id="reportStudent"></select>
+          </div>
+          <div class="field">
+            <label for="semesterSelect">Semester</label>
+            <select id="semesterSelect">
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+            </select>
+          </div>
+        </article>
+
+        <article class="panel report-paper" id="reportPaper">
+          <div class="report-header">
+            <div class="report-logo">A</div>
+            <div>
+              <h2>RAPOR DIGITAL SISWA</h2>
+              <p>PORTAL AKADEMIK ALFALAH</p>
+              <span>Dokumen demonstrasi — bukan rapor resmi</span>
+            </div>
+          </div>
+
+          <hr>
+
+          <div id="reportIdentity" class="identity-grid"></div>
+
+          <h3 class="table-title">A. Nilai Akademik</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Mata Pelajaran</th>
+                  <th>Nilai Akhir</th>
+                  <th>Predikat</th>
+                </tr>
+              </thead>
+              <tbody id="reportTable"></tbody>
+              <tfoot id="reportFooter"></tfoot>
+            </table>
+          </div>
+
+          <h3 class="table-title">B. Rekap Kehadiran</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hadir</th>
+                  <th>Izin</th>
+                  <th>Sakit</th>
+                  <th>Alpa</th>
+                </tr>
+              </thead>
+              <tbody id="reportAttendance"></tbody>
+            </table>
+          </div>
+
+          <div class="teacher-note">
+            <h3>C. Catatan Wali Kelas</h3>
+            <p id="teacherNote"></p>
+          </div>
+
+          <div class="report-signatures">
+            <div>
+              <p>Orang Tua / Wali</p>
+              <div class="signature-space"></div>
+              <p>(................................)</p>
+            </div>
+            <div>
+              <p>Wali Kelas</p>
+              <div class="signature-space"></div>
+              <p>(................................)</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ABSENSI -->
+      <section class="page" id="attendance">
+        <div class="section-heading">
+          <div>
+            <h2>Rekap Absensi</h2>
+            <p>Ringkasan kehadiran siswa per semester.</p>
+          </div>
+          <select id="attendanceStudent" aria-label="Pilih siswa"></select>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon green">✓</div>
+            <p>Hadir</p>
+            <h3 id="presentCount">0</h3>
+            <span>Hari kehadiran</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon blue">i</div>
+            <p>Izin</p>
+            <h3 id="permissionCount">0</h3>
+            <span>Hari izin</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon orange">!</div>
+            <p>Sakit</p>
+            <h3 id="sickCount">0</h3>
+            <span>Hari sakit</span>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h3>Detail Kehadiran</h3>
+              <p id="attendanceStudentName"></p>
+            </div>
+          </div>
+          <div id="attendanceDetail"></div>
+        </article>
+      </section>
+
+      <footer class="page-footer">
+        <p>Alfalah Parent Portal · Prototipe pembelajaran</p>
+        <p>Gunakan data fiktif untuk demonstrasi.</p>
+      </footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
