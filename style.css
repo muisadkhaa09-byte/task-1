@@ -104,4 +104,73 @@ th {
   .card {
     padding: 16px;
   }
+  
+/* Formulir Identitas Siswa */
+.student-form {
+  margin-bottom: 24px;
+}
+
+.student-form h2 {
+  margin-bottom: 8px;
+}
+
+.student-form > p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fff;
+}
+
+.submit-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #176b45;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #105235;
+}
+
+.student-result {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #eef8f1;
+  border-left: 4px solid #176b45;
+  overflow-wrap: anywhere;
+}
+
+.student-result h3 {
+  margin-top: 0;
+}
+
+.student-result p {
+  margin: 8px 0;
+}
+
 }
