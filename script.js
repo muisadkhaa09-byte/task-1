@@ -1,118 +1,697 @@
 
-const grades = {
-  ganjil: [
-    { subject: "Matematika", score: 86 },
-    { subject: "Bahasa Indonesia", score: 88 },
-    { subject: "Bahasa Inggris", score: 79 },
-    { subject: "Biologi", score: 85 }
-  ],
+/* =====================================
+   ALFALAH PARENT PORTAL
+   File: script.js
+   ===================================== */
 
-  genap: [
-    { subject: "Matematika", score: 89 },
-    { subject: "Bahasa Indonesia", score: 90 },
-    { subject: "Bahasa Inggris", score: 83 },
-    { subject: "Biologi", score: 87 }
-  ]
+// 1. DATA CONTOH SISWA
+// Gunakan data fiktif untuk prototipe publik.
+
+const students = [
+  {
+    id: "S001",
+    name: "Ahmad Fikri",
+    className: "X-A",
+    major: "Umum",
+    academicYear: "2026/2027",
+    notes: {
+      1: "Pertahankan semangat belajar dan tingkatkan latihan matematika.",
+      2: "Menunjukkan perkembangan yang baik. Terus tingkatkan kedisiplinan."
+    },
+    semesters: {
+      1: {
+        subjects: [
+          { name: "Matematika", score: 85 },
+          { name: "Bahasa Indonesia", score: 90 },
+          { name: "Bahasa Inggris", score: 82 },
+          { name: "Informatika", score: 88 },
+          { name: "IPA", score: 86 },
+          { name: "IPS", score: 84 }
+        ],
+        attendance: {
+          present: 90,
+          permission: 2,
+          sick: 3,
+          absent: 1
+        }
+      },
+      2: {
+        subjects: [
+          { name: "Matematika", score: 88 },
+          { name: "Bahasa Indonesia", score: 91 },
+          { name: "Bahasa Inggris", score: 86 },
+          { name: "Informatika", score: 92 },
+          { name: "IPA", score: 89 },
+          { name: "IPS", score: 87 }
+        ],
+        attendance: {
+          present: 92,
+          permission: 1,
+          sick: 2,
+          absent: 0
+        }
+      }
+    }
+  },
+  {
+    id: "S002",
+    name: "Siti Aisyah",
+    className: "X-A",
+    major: "Umum",
+    academicYear: "2026/2027",
+    notes: {
+      1: "Pertahankan prestasi dan keaktifan selama pembelajaran.",
+      2: "Hasil belajar baik. Terus kembangkan kemampuan dan kreativitas."
+    },
+    semesters: {
+      1: {
+        subjects: [
+          { name: "Matematika", score: 92 },
+          { name: "Bahasa Indonesia", score: 88 },
+          { name: "Bahasa Inggris", score: 94 },
+          { name: "Informatika", score: 90 },
+          { name: "IPA", score: 91 },
+          { name: "IPS", score: 89 }
+        ],
+        attendance: {
+          present: 94,
+          permission: 1,
+          sick: 1,
+          absent: 0
+        }
+      },
+      2: {
+        subjects: [
+          { name: "Matematika", score: 94 },
+          { name: "Bahasa Indonesia", score: 91 },
+          { name: "Bahasa Inggris", score: 95 },
+          { name: "Informatika", score: 93 },
+          { name: "IPA", score: 92 },
+          { name: "IPS", score: 91 }
+        ],
+        attendance: {
+          present: 95,
+          permission: 1,
+          sick: 0,
+          absent: 0
+        }
+      }
+    }
+  },
+  {
+    id: "S003",
+    name: "Muhammad Rizky",
+    className: "X-B",
+    major: "Umum",
+    academicYear: "2026/2027",
+    notes: {
+      1: "Perlu meningkatkan konsistensi belajar dan latihan mandiri.",
+      2: "Terus tingkatkan fokus belajar dan aktif bertanya di kelas."
+    },
+    semesters: {
+      1: {
+        subjects: [
+          { name: "Matematika", score: 78 },
+          { name: "Bahasa Indonesia", score: 84 },
+          { name: "Bahasa Inggris", score: 80 },
+          { name: "Informatika", score: 86 },
+          { name: "IPA", score: 81 },
+          { name: "IPS", score: 83 }
+        ],
+        attendance: {
+          present: 85,
+          permission: 3,
+          sick: 5,
+          absent: 2
+        }
+      },
+      2: {
+        subjects: [
+          { name: "Matematika", score: 82 },
+          { name: "Bahasa Indonesia", score: 86 },
+          { name: "Bahasa Inggris", score: 83 },
+          { name: "Informatika", score: 88 },
+          { name: "IPA", score: 84 },
+          { name: "IPS", score: 85 }
+        ],
+        attendance: {
+          present: 89,
+          permission: 2,
+          sick: 3,
+          absent: 1
+        }
+      }
+    }
+  }
+];
+
+// 2. ELEMEN HTML
+
+const $ = (selector) => document.querySelector(selector);
+
+const elements = {
+  sidebar: $("#sidebar"),
+  menuToggle: $("#menuToggle"),
+  pageTitle: $("#pageTitle"),
+
+  dashboardStudent: $("#dashboardStudent"),
+  reportStudent: $("#reportStudent"),
+  attendanceStudent: $("#attendanceStudent"),
+  semesterSelect: $("#semesterSelect"),
+
+  subjectCount: $("#subjectCount"),
+  averageScore: $("#averageScore"),
+  attendanceRate: $("#attendanceRate"),
+  dashboardSubjects: $("#dashboardSubjects"),
+  studentProfile: $("#studentProfile"),
+
+  studentSearch: $("#studentSearch"),
+  studentTable: $("#studentTable"),
+  studentTotal: $("#studentTotal"),
+
+  reportIdentity: $("#reportIdentity"),
+  reportTable: $("#reportTable"),
+  reportFooter: $("#reportFooter"),
+  reportAttendance: $("#reportAttendance"),
+  teacherNote: $("#teacherNote"),
+  printReport: $("#printReport"),
+
+  presentCount: $("#presentCount"),
+  permissionCount: $("#permissionCount"),
+  sickCount: $("#sickCount"),
+  attendanceStudentName: $("#attendanceStudentName"),
+  attendanceDetail: $("#attendanceDetail"),
+
+  toast: $("#toast")
 };
 
-const semesterSelect = document.getElementById("semester");
-const gradeList = document.getElementById("grade-list");
-const averageElement = document.getElementById("average");
+let toastTimer;
 
-function renderGrades() {
-  const selectedSemester = semesterSelect.value;
-  const selectedGrades = grades[selectedSemester];
+// 3. FUNGSI BANTUAN
 
-  gradeList.replaceChildren();
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, (char) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
 
-  selectedGrades.forEach((item) => {
-    const row = document.createElement("tr");
-    const subjectCell = document.createElement("td");
-    const scoreCell = document.createElement("td");
-
-    subjectCell.textContent = item.subject;
-    scoreCell.textContent = item.score;
-
-    row.append(subjectCell, scoreCell);
-    gradeList.appendChild(row);
+    return entities[char];
   });
+}
 
-  const total = selectedGrades.reduce(
-    (sum, item) => sum + item.score,
+function getStudent(id) {
+  return students.find((student) => student.id === id)
+    || students[0];
+}
+
+function getSelectedSemester() {
+  return elements.semesterSelect.value;
+}
+
+function getSemesterData(student, semester = getSelectedSemester()) {
+  return student.semesters[semester];
+}
+
+function calculateAverage(subjects) {
+  if (!subjects.length) return 0;
+
+  const total = subjects.reduce(
+    (sum, subject) => sum + subject.score,
     0
   );
 
-  const average = total / selectedGrades.length;
-  averageElement.textContent = average.toFixed(1);
+  return total / subjects.length;
 }
 
-semesterSelect.addEventListener("change", renderGrades);
+function getGrade(score) {
+  // Contoh predikat untuk demonstrasi.
+  // Sesuaikan dengan kebijakan penilaian sekolah.
+  if (score >= 90) return "Sangat Baik";
+  if (score >= 80) return "Baik";
+  if (score >= 70) return "Cukup";
 
-renderGrades();
+  return "Perlu Bimbingan";
+}
 
-const studentForm = document.getElementById("student-form");
+function calculateAttendance(attendance) {
+  const total =
+    attendance.present +
+    attendance.permission +
+    attendance.sick +
+    attendance.absent;
 
-studentForm.addEventListener("submit", function (event) {
-  // Mencegah halaman dimuat ulang
-  event.preventDefault();
+  if (total === 0) return 0;
 
-  // Mengambil data dari formulir
-  const name = document
-    .getElementById("student-name")
-    .value.trim();
+  return (attendance.present / total) * 100;
+}
 
-  const studentClass = document
-    .getElementById("student-class")
-    .value;
+function showToast(message) {
+  elements.toast.textContent = message;
+  elements.toast.classList.add("show");
 
-  const major = document
-    .getElementById("student-major")
-    .value;
+  clearTimeout(toastTimer);
 
-  // Memastikan semua data telah diisi
-  if (!name || !studentClass || !major) {
-    document.getElementById("form-message").textContent =
-      "Mohon lengkapi semua identitas siswa.";
+  toastTimer = setTimeout(() => {
+    elements.toast.classList.remove("show");
+  }, 2800);
+}
+
+// 4. MEMBUAT PILIHAN SISWA
+
+function populateStudentOptions() {
+  const selects = [
+    elements.dashboardStudent,
+    elements.reportStudent,
+    elements.attendanceStudent
+  ];
+
+  const options = students.map((student) => {
+    return `
+      <option value="${escapeHTML(student.id)}">
+        ${escapeHTML(student.name)} - ${escapeHTML(student.className)}
+      </option>
+    `;
+  }).join("");
+
+  selects.forEach((select) => {
+    select.innerHTML = options;
+  });
+
+  // Pilih siswa pertama sebagai contoh.
+  syncStudentSelection(students[0].id);
+}
+
+function syncStudentSelection(studentId) {
+  elements.dashboardStudent.value = studentId;
+  elements.reportStudent.value = studentId;
+  elements.attendanceStudent.value = studentId;
+
+  renderDashboard();
+  renderStudentTable();
+  renderReport();
+  renderAttendance();
+}
+
+// 5. NAVIGASI HALAMAN
+
+const pageTitles = {
+  dashboard: "Dashboard",
+  students: "Data Siswa",
+  report: "Rapor Digital",
+  attendance: "Absensi"
+};
+
+function showPage(pageId) {
+  const target = document.getElementById(pageId);
+
+  if (!target || !target.classList.contains("page")) {
     return;
   }
 
-  // Menampilkan identitas pada dashboard
-  document.getElementById("display-name").textContent = name;
-  document.getElementById("display-class").textContent =
-    studentClass;
-  document.getElementById("display-major").textContent = major;
+  document.querySelectorAll(".page").forEach((page) => {
+    page.classList.toggle("active", page.id === pageId);
+  });
 
-  // Menampilkan pesan berhasil
-  document.getElementById("form-message").textContent =
-    "Identitas siswa berhasil ditampilkan.";
+  document.querySelectorAll(".nav-link").forEach((button) => {
+    const active = button.dataset.page === pageId;
 
-  // Mengembalikan formulir ke kondisi awal
-  studentForm.reset();
-  
-const studentForm = document.getElementById("student-form");
+    button.classList.toggle("active", active);
 
-studentForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+    if (active) {
+      button.setAttribute("aria-current", "page");
+    } else {
+      button.removeAttribute("aria-current");
+    }
+  });
 
-  // Ambil data dari formulir
-  const name = document.getElementById("student-name").value.trim();
-  const studentClass = document.getElementById("student-class").value;
-  const major = document.getElementById("student-major").value;
+  elements.pageTitle.textContent = pageTitles[pageId];
+  elements.sidebar.classList.remove("open");
 
-  // Pastikan semua data terisi
-  if (!name || !studentClass || !major) {
-    alert("Mohon lengkapi nama, kelas, dan jurusan.");
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+document.querySelectorAll(".nav-link").forEach((button) => {
+  button.addEventListener("click", () => {
+    showPage(button.dataset.page);
+  });
+});
+
+document.querySelectorAll("[data-go]").forEach((button) => {
+  button.addEventListener("click", () => {
+    showPage(button.dataset.go);
+  });
+});
+
+elements.menuToggle.addEventListener("click", () => {
+  elements.sidebar.classList.toggle("open");
+});
+
+// 6. DASHBOARD
+
+function renderDashboard() {
+  const student = getStudent(elements.dashboardStudent.value);
+  const semester = getSemesterData(student);
+
+  const subjects = semester.subjects;
+  const attendance = semester.attendance;
+  const average = calculateAverage(subjects);
+  const attendancePercentage = calculateAttendance(attendance);
+
+  elements.subjectCount.textContent = subjects.length;
+  elements.averageScore.textContent = average.toFixed(1);
+  elements.attendanceRate.textContent =
+    `${attendancePercentage.toFixed(1)}%`;
+
+  elements.dashboardSubjects.innerHTML = subjects.map((subject) => {
+    const score = Number(subject.score);
+    const width = Math.max(0, Math.min(100, score));
+
+    return `
+      <div class="subject-item">
+        <div class="subject-top">
+          <span>${escapeHTML(subject.name)}</span>
+          <span class="subject-score">${score}</span>
+        </div>
+
+        <div class="progress-track">
+          <div
+            class="progress-fill"
+            style="width: ${width}%"
+          ></div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  elements.studentProfile.innerHTML = `
+    <div class="student-profile-card">
+      <div class="student-large-avatar">
+        ${escapeHTML(student.name.charAt(0).toUpperCase())}
+      </div>
+
+      <h3>${escapeHTML(student.name)}</h3>
+      <p>Kelas ${escapeHTML(student.className)}</p>
+
+      <div class="profile-details">
+        <div class="detail-row">
+          <span>NIS Demo</span>
+          <strong>${escapeHTML(student.id)}</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Jurusan</span>
+          <strong>${escapeHTML(student.major)}</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Tahun Ajaran</span>
+          <strong>${escapeHTML(student.academicYear)}</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Semester</span>
+          <strong>${escapeHTML(getSelectedSemester())}</strong>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// 7. DAFTAR DAN PENCARIAN SISWA
+
+function renderStudentTable() {
+  const keyword = elements.studentSearch.value
+    .trim()
+    .toLowerCase();
+
+  const filteredStudents = students.filter((student) => {
+    const searchableText = [
+      student.name,
+      student.id,
+      student.className,
+      student.major
+    ].join(" ").toLowerCase();
+
+    return searchableText.includes(keyword);
+  });
+
+  elements.studentTotal.textContent =
+    `${filteredStudents.length} siswa`;
+
+  if (filteredStudents.length === 0) {
+    elements.studentTable.innerHTML = `
+      <tr>
+        <td colspan="4" class="empty-state">
+          Data siswa tidak ditemukan.
+        </td>
+      </tr>
+    `;
+
     return;
   }
 
-  // Tampilkan data siswa
-  document.getElementById("result-name").textContent = name;
-  document.getElementById("result-class").textContent = studentClass;
-  document.getElementById("result-major").textContent = major;
+  elements.studentTable.innerHTML = filteredStudents.map((student) => `
+    <tr>
+      <td>${escapeHTML(student.name)}</td>
+      <td>${escapeHTML(student.id)}</td>
+      <td>${escapeHTML(student.className)}</td>
+      <td>
+        <button
+          class="table-action"
+          data-view-student="${escapeHTML(student.id)}"
+        >
+          Lihat rapor
+        </button>
+      </td>
+    </tr>
+  `).join("");
+}
 
-  document.getElementById("student-result").hidden = false;
+elements.studentSearch.addEventListener("input", renderStudentTable);
 
-  alert("Identitas siswa berhasil ditampilkan.");
+elements.studentTable.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-view-student]");
+
+  if (!button) return;
+
+  const studentId = button.dataset.viewStudent;
+
+  syncStudentSelection(studentId);
+  showPage("report");
 });
 
+// 8. RAPOR DIGITAL
+
+function renderReport() {
+  const student = getStudent(elements.reportStudent.value);
+  const semesterNumber = getSelectedSemester();
+  const semester = getSemesterData(student);
+  const attendance = semester.attendance;
+  const average = calculateAverage(semester.subjects);
+
+  elements.reportIdentity.innerHTML = `
+    <div class="identity-item">
+      <span>Nama Siswa</span>
+      <strong>${escapeHTML(student.name)}</strong>
+    </div>
+
+    <div class="identity-item">
+      <span>NIS Demo</span>
+      <strong>${escapeHTML(student.id)}</strong>
+    </div>
+
+    <div class="identity-item">
+      <span>Kelas</span>
+      <strong>${escapeHTML(student.className)}</strong>
+    </div>
+
+    <div class="identity-item">
+      <span>Jurusan</span>
+      <strong>${escapeHTML(student.major)}</strong>
+    </div>
+
+    <div class="identity-item">
+      <span>Tahun Ajaran</span>
+      <strong>${escapeHTML(student.academicYear)}</strong>
+    </div>
+
+    <div class="identity-item">
+      <span>Semester</span>
+      <strong>${escapeHTML(semesterNumber)}</strong>
+    </div>
+  `;
+
+  elements.reportTable.innerHTML = semester.subjects.map(
+    (subject, index) => `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${escapeHTML(subject.name)}</td>
+        <td>${subject.score}</td>
+        <td>${escapeHTML(getGrade(subject.score))}</td>
+      </tr>
+    `
+  ).join("");
+
+  elements.reportFooter.innerHTML = `
+    <tr>
+      <td colspan="2">Rata-rata Nilai</td>
+      <td>${average.toFixed(2)}</td>
+      <td>${escapeHTML(getGrade(average))}</td>
+    </tr>
+  `;
+
+  elements.reportAttendance.innerHTML = `
+    <tr>
+      <td>${attendance.present} hari</td>
+      <td>${attendance.permission} hari</td>
+      <td>${attendance.sick} hari</td>
+      <td>${attendance.absent} hari</td>
+    </tr>
+  `;
+
+  elements.teacherNote.textContent =
+    student.notes[semesterNumber] ||
+    "Belum ada catatan wali kelas.";
+}
+
+// 9. REKAP ABSENSI
+
+function renderAttendance() {
+  const student = getStudent(elements.attendanceStudent.value);
+  const semester = getSemesterData(student);
+  const attendance = semester.attendance;
+
+  const total =
+    attendance.present +
+    attendance.permission +
+    attendance.sick +
+    attendance.absent;
+
+  const percentage = calculateAttendance(attendance);
+
+  elements.presentCount.textContent = attendance.present;
+  elements.permissionCount.textContent = attendance.permission;
+  elements.sickCount.textContent = attendance.sick;
+
+  elements.attendanceStudentName.textContent =
+    `${student.name} · Kelas ${student.className}`;
+
+  const details = [
+    {
+      label: "Hadir",
+      count: attendance.present,
+      color: "#31845b"
+    },
+    {
+      label: "Izin",
+      count: attendance.permission,
+      color: "#507ac1"
+    },
+    {
+      label: "Sakit",
+      count: attendance.sick,
+      color: "#c78635"
+    },
+    {
+      label: "Alpa",
+      count: attendance.absent,
+      color: "#c45a5a"
+    }
+  ];
+
+  elements.attendanceDetail.innerHTML = `
+    <div class="attendance-progress">
+      ${details.map((item) => {
+        const width = total > 0
+          ? (item.count / total) * 100
+          : 0;
+
+        return `
+          <div class="attendance-progress-top">
+            <span>${item.label}</span>
+            <strong>${item.count} hari</strong>
+          </div>
+
+          <div class="progress-track">
+            <div
+              class="progress-fill"
+              style="
+                width: ${width}%;
+                background: ${item.color};
+              "
+            ></div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+
+    <div class="detail-row">
+      <span>Total hari tercatat</span>
+      <strong>${total} hari</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Persentase kehadiran</span>
+      <strong>${percentage.toFixed(1)}%</strong>
+    </div>
+  `;
+}
+
+// 10. EVENT PEMILIHAN SISWA
+
+elements.dashboardStudent.addEventListener("change", (event) => {
+  syncStudentSelection(event.target.value);
 });
+
+elements.reportStudent.addEventListener("change", (event) => {
+  syncStudentSelection(event.target.value);
+});
+
+elements.attendanceStudent.addEventListener("change", (event) => {
+  syncStudentSelection(event.target.value);
+});
+
+// 11. EVENT PEMILIHAN SEMESTER
+
+elements.semesterSelect.addEventListener("change", () => {
+  renderDashboard();
+  renderReport();
+  renderAttendance();
+
+  showToast("Data semester berhasil diperbarui.");
+});
+
+// 12. CETAK / SIMPAN PDF
+
+elements.printReport.addEventListener("click", () => {
+  const student = getStudent(elements.reportStudent.value);
+
+  // Pastikan data yang akan dicetak sesuai dengan
+  // siswa yang dipilih pada halaman rapor.
+  syncStudentSelection(student.id);
+  showPage("report");
+
+  window.print();
+});
+
+// 13. JALANKAN WEBSITE
+
+function init() {
+  populateStudentOptions();
+
+  renderDashboard();
+  renderStudentTable();
+  renderReport();
+  renderAttendance();
+
+  console.log("Alfalah Parent Portal berhasil dijalankan.");
+}
+
+init();
