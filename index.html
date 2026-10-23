@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alfalah Parent Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Alfalah Parent Portal</h1>
+    <p>Portal informasi akademik</p>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <h2>Ringkasan Akademik</h2>
+      <p>Selamat datang di prototipe rapor digital.</p>
+    </section>
+
+    <section class="summary">
+      <article class="card">
+        <p>Semester</p>
+        <h3>Ganjil 2026/2027</h3>
+      </article>
+      <article class="card">
+        <p>Rata-rata Nilai</p>
+        <h3 id="average">0</h3>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Nilai Mata Pelajaran</h2>
+
+      <label for="semester">Pilih semester:</label>
+      <select id="semester">
+        <option value="ganjil">Ganjil</option>
+        <option value="genap">Genap</option>
+      </select>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Mata Pelajaran</th>
+              <th>Nilai</th>
+            </tr>
+          </thead>
+          <tbody id="grade-list"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="notice">
+      DEMO: Seluruh nilai merupakan data simulasi.
+      Bukan rapor resmi sekolah.
+    </p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
