@@ -88,4 +88,31 @@ studentForm.addEventListener("submit", function (event) {
 
   // Mengembalikan formulir ke kondisi awal
   studentForm.reset();
+  
+const studentForm = document.getElementById("student-form");
+
+studentForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  // Ambil data dari formulir
+  const name = document.getElementById("student-name").value.trim();
+  const studentClass = document.getElementById("student-class").value;
+  const major = document.getElementById("student-major").value;
+
+  // Pastikan semua data terisi
+  if (!name || !studentClass || !major) {
+    alert("Mohon lengkapi nama, kelas, dan jurusan.");
+    return;
+  }
+
+  // Tampilkan data siswa
+  document.getElementById("result-name").textContent = name;
+  document.getElementById("result-class").textContent = studentClass;
+  document.getElementById("result-major").textContent = major;
+
+  document.getElementById("student-result").hidden = false;
+
+  alert("Identitas siswa berhasil ditampilkan.");
+});
+
 });
