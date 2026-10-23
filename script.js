@@ -49,3 +49,43 @@ function renderGrades() {
 semesterSelect.addEventListener("change", renderGrades);
 
 renderGrades();
+
+const studentForm = document.getElementById("student-form");
+
+studentForm.addEventListener("submit", function (event) {
+  // Mencegah halaman dimuat ulang
+  event.preventDefault();
+
+  // Mengambil data dari formulir
+  const name = document
+    .getElementById("student-name")
+    .value.trim();
+
+  const studentClass = document
+    .getElementById("student-class")
+    .value;
+
+  const major = document
+    .getElementById("student-major")
+    .value;
+
+  // Memastikan semua data telah diisi
+  if (!name || !studentClass || !major) {
+    document.getElementById("form-message").textContent =
+      "Mohon lengkapi semua identitas siswa.";
+    return;
+  }
+
+  // Menampilkan identitas pada dashboard
+  document.getElementById("display-name").textContent = name;
+  document.getElementById("display-class").textContent =
+    studentClass;
+  document.getElementById("display-major").textContent = major;
+
+  // Menampilkan pesan berhasil
+  document.getElementById("form-message").textContent =
+    "Identitas siswa berhasil ditampilkan.";
+
+  // Mengembalikan formulir ke kondisi awal
+  studentForm.reset();
+});
