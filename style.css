@@ -984,4 +984,61 @@ tfoot td {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+   
+/* =====================================
+   TAMBAHAN: FILTER KELAS DAN SISWA
+   ===================================== */
+
+.dashboard-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.dashboard-filter-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.dashboard-filter-field label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dashboard-filter-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+.development-badge {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 7px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .dashboard-filters {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+}
+
+@media print {
+  .dashboard-filters {
+    display: none !important;
+  }
+}
+
 }
