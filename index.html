@@ -84,7 +84,36 @@
             <h2>Ringkasan Akademik</h2>
             <p>Data dari siswa yang sedang dipilih.</p>
           </div>
-          <select id="dashboardStudent" aria-label="Pilih siswa"></select>
+         
+<div class="section-heading">
+  <div>
+    <h2>Ringkasan Akademik</h2>
+    <p>Pilih kelas dan nama murid untuk melihat seluruh data akademik.</p>
+  </div>
+
+  <div class="student-selection">
+    <div class="field">
+      <label for="dashboardClass">Pilih Kelas</label>
+      <select id="dashboardClass" aria-label="Pilih kelas">
+        <option value="">Pilih kelas terlebih dahulu</option>
+        <option value="7A">Kelas 7A</option>
+        <option value="7B">Kelas 7B</option>
+        <option value="8A">Kelas 8A</option>
+        <option value="8B">Kelas 8B</option>
+        <option value="9A">Kelas 9A</option>
+        <option value="9B">Kelas 9B</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="dashboardStudent">Pilih Nama Murid</label>
+      <select id="dashboardStudent" aria-label="Pilih nama murid" disabled>
+        <option value="">Pilih kelas terlebih dahulu</option>
+      </select>
+    </div>
+  </div>
+</div>
+
         </div>
 
         <div class="stats-grid">
