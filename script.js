@@ -1,4 +1,5 @@
 
+
 /* =====================================
    ALFALAH PARENT PORTAL
    File: script.js
