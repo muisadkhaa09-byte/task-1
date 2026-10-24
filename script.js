@@ -697,3 +697,38 @@ function init() {
 
 init();
 
+// ==========================================
+// PENCARIAN GLOBAL UNTUK SEMUA MENU
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInputs = document.querySelectorAll(
+        'input[type="search"], input[type="text"][placeholder*="Cari"], #searchInput, #search'
+    );
+
+    function jalankanPencarian(keyword) {
+        const kata = keyword.trim().toLowerCase();
+
+        // Cari pada seluruh konten menu yang sedang aktif
+        const kontenAktif = document.querySelector(
+            ".page.active, .content.active, .menu-content.active, main"
+        );
+
+        if (!kontenAktif) return;
+
+        const elemen = kontenAktif.querySelectorAll(
+            ".card, .menu-card, .item, tr, li, article, .searchable"
+        );
+
+        elemen.forEach(function (item) {
+            const cocok = item.textContent.toLowerCase().includes(kata);
+            item.style.display = cocok ? "" : "none";
+        });
+    }
+
+    searchInputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+            jalankanPencarian(input.value);
+        });
+    });
+});
