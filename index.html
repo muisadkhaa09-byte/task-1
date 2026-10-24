@@ -178,19 +178,18 @@
           </button>
         </div>
 
-        <article class="panel report-controls">
-          <div class="field">
-            <label for="reportStudent">Pilih Siswa</label>
-            <select id="reportStudent"></select>
-          </div>
-          <div class="field">
-            <label for="semesterSelect">Semester</label>
-            <select id="semesterSelect">
-              <option value="1">Semester 1</option>
-              <option value="2">Semester 2</option>
-            </select>
-          </div>
-        </article>
+<article class="panel report-controls">
+  <select id="reportStudent" hidden aria-hidden="true" tabindex="-1"></select>
+
+  <div class="field">
+    <label for="semesterSelect">Semester</label>
+    <select id="semesterSelect">
+      <option value="1">Semester 1</option>
+      <option value="2">Semester 2</option>
+    </select>
+  </div>
+</article>
+
 
         <article class="panel report-paper" id="reportPaper">
           <div class="report-header">
@@ -259,13 +258,16 @@
 
       <!-- ABSENSI -->
       <section class="page" id="attendance">
-        <div class="section-heading">
-          <div>
-            <h2>Rekap Absensi</h2>
-            <p>Ringkasan kehadiran siswa per semester.</p>
-          </div>
-          <select id="attendanceStudent" aria-label="Pilih siswa"></select>
-        </div>
+
+<div class="section-heading">
+  <div>
+    <h2>Rekap Absensi</h2>
+    <p>Ringkasan kehadiran siswa per semester.</p>
+  </div>
+
+  <select id="attendanceStudent" hidden
+    aria-hidden="true" tabindex="-1"></select>
+</div>
 
         <div class="stats-grid">
           <article class="stat-card">
