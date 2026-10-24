@@ -1041,4 +1041,48 @@ tfoot td {
   }
 }
 
+   
+.student-selection {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.student-selection .field {
+  min-width: 180px;
+}
+
+.student-selection label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.student-selection select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #dce5df;
+  border-radius: 9px;
+  background: #fff;
+  color: #263b30;
+}
+
+.student-selection select:disabled {
+  background: #f1f4f2;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .student-selection {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .student-selection .field {
+    width: 100%;
+    min-width: 0;
+  }
+
 }
