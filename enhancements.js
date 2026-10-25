@@ -203,28 +203,21 @@
     // ========================================
     // 5. SINKRONISASI SEMUA HALAMAN
     // ========================================
+   
+function selectStudent(studentId) {
+  const student = students.find(
+    (item) => item.id === studentId
+  );
 
-    function selectStudent(studentId) {
-      const student = students.find(
-        (item) => item.id === studentId
-      );
+  if (!student) return;
 
-      if (!student) return;
+  classSelect.value = student.className;
+  updateStudentsByClass(student.className);
+  dashboardStudent.value = student.id;
 
-      // Perbarui kelas jika siswa dipilih dari halaman
-      // rapor atau absensi.
-      classSelect.value = student.className;
-
-      // Perbarui daftar siswa pada dashboard.
-      updateStudentsByClass(student.className);
-
-      // Pilih nama siswa di dashboard.
-      dashboardStudent.value = student.id;
-
-      // Gunakan fungsi sinkronisasi dari script.js lama.
-      // Fungsi ini memperbarui dashboard, rapor, dan absensi.
-      syncStudentSelection(student.id);
-    }
+  // Perbarui Dashboard, Rapor, dan Absensi
+  syncStudentSelection(student.id);
+}
 
     // ========================================
     // 6. PENGGUNA MEMILIH KELAS
