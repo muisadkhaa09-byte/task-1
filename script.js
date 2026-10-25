@@ -1,5 +1,4 @@
 
-
 /* =====================================
    ALFALAH PARENT PORTAL
    File: script.js
@@ -10,7 +9,7 @@
 
 const students = [
   {
-    id: "S001",
+    id: "XA-001",
     name: "Ahmad Yani",
     className: "X-A",
     major: "Umum",
@@ -55,7 +54,7 @@ const students = [
     }
   },
   {
-    id: "S002",
+    id: "XA-002",
     name: "Siti Aisyah",
     className: "X-A",
     major: "Umum",
@@ -100,7 +99,7 @@ const students = [
     }
   },
    {
-    id: "S003",
+    id: "XA-003",
     name: "muhammad supri",
     className: "X-A",
     major: "Umum",
@@ -146,7 +145,7 @@ const students = [
   },
   
   {
-    id: "S001",
+    id: "XB-001",
     name: "Muhammad Rizky",
     className: "X-B",
     major: "Umum",
