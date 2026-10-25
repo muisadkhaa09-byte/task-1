@@ -99,6 +99,52 @@ const students = [
       }
     }
   },
+   {
+    id: "S001",
+    name: "Ahmad Fikri",
+    className: "X-A",
+    major: "Umum",
+    academicYear: "2026/2027",
+    notes: {
+      1: "Pertahankan semangat belajar dan tingkatkan latihan matematika.",
+      2: "Menunjukkan perkembangan yang baik. Terus tingkatkan kedisiplinan."
+    },
+    semesters: {
+      1: {
+        subjects: [
+          { name: "Matematika", score: 85 },
+          { name: "Bahasa Indonesia", score: 90 },
+          { name: "Bahasa Inggris", score: 82 },
+          { name: "Informatika", score: 88 },
+          { name: "IPA", score: 86 },
+          { name: "IPS", score: 84 }
+        ],
+        attendance: {
+          present: 90,
+          permission: 2,
+          sick: 3,
+          absent: 1
+        }
+      },
+      2: {
+        subjects: [
+          { name: "Matematika", score: 88 },
+          { name: "Bahasa Indonesia", score: 91 },
+          { name: "Bahasa Inggris", score: 86 },
+          { name: "Informatika", score: 92 },
+          { name: "IPA", score: 89 },
+          { name: "IPS", score: 87 }
+        ],
+        attendance: {
+          present: 92,
+          permission: 1,
+          sick: 2,
+          absent: 0
+        }
+      }
+    }
+  },
+  
   {
     id: "S003",
     name: "Muhammad Rizky",
