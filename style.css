@@ -886,3 +886,67 @@ tbody tr:hover {
     -webkit-print-color-adjust: exact;
   }
 }
+
+/* Perbaikan khusus Dashboard yang terpotong */
+#dashboard,
+#dashboard .section-heading,
+#dashboard .stats-grid,
+#dashboard .content-grid {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+#dashboard .section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#dashboard .section-heading > div {
+  min-width: 0;
+  max-width: 100%;
+}
+
+#dashboard .student-selection {
+  flex: 1 1 320px;
+  width: 100%;
+  max-width: 520px;
+}
+
+#dashboard .stats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#dashboard .content-grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+
+#dashboard .stat-card,
+#dashboard .panel {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  #dashboard .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #dashboard .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  #dashboard .stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #dashboard .student-selection {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 100%;
+  }
+}
