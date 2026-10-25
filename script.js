@@ -11,7 +11,7 @@
 const students = [
   {
     id: "S001",
-    name: "Ahmad Fikri",
+    name: "Ahmad Yani",
     className: "X-A",
     major: "Umum",
     academicYear: "2026/2027",
@@ -101,7 +101,7 @@ const students = [
   },
    {
     id: "S001",
-    name: "Ahmad Fikri",
+    name: "muhammad supri",
     className: "X-A",
     major: "Umum",
     academicYear: "2026/2027",
