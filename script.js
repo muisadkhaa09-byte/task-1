@@ -100,7 +100,7 @@ const students = [
     }
   },
    {
-    id: "S001",
+    id: "S003",
     name: "muhammad supri",
     className: "X-A",
     major: "Umum",
@@ -146,7 +146,7 @@ const students = [
   },
   
   {
-    id: "S003",
+    id: "S001",
     name: "Muhammad Rizky",
     className: "X-B",
     major: "Umum",
@@ -536,64 +536,108 @@ elements.studentTable.addEventListener("click", (event) => {
 
 // 8. RAPOR DIGITAL
 
+
 function renderReport() {
   const student = getStudent(elements.reportStudent.value);
   const semesterNumber = getSelectedSemester();
-  const semester = getSemesterData(student);
-  const attendance = semester.attendance;
-  const average = calculateAverage(semester.subjects);
 
+  if (!student) return;
+
+  const semester = student.semesters?.[semesterNumber];
+
+  // Pastikan elemen tabel tersedia.
+  if (!elements.reportTable) return;
+
+  // Jika data semester belum tersedia.
+  if (!semester || !Array.isArray(semester.subjects)) {
+    elements.reportTable.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align:center;padding:20px">
+          Data mata pelajaran dan nilai belum tersedia
+          untuk semester ini.
+        </td>
+      </tr>
+    `;
+
+    elements.reportFooter.innerHTML = "";
+    return;
+  }
+
+  const subjects = semester.subjects;
+  const attendance = semester.attendance || {
+    present: 0,
+    permission: 0,
+    sick: 0,
+    absent: 0
+  };
+
+  const average = subjects.length
+    ? subjects.reduce((total, item) => total + Number(item.score || 0), 0)
+      / subjects.length
+    : 0;
+
+  // Identitas siswa
   elements.reportIdentity.innerHTML = `
     <div class="identity-item">
       <span>Nama Siswa</span>
       <strong>${escapeHTML(student.name)}</strong>
     </div>
-
     <div class="identity-item">
       <span>NIS Demo</span>
       <strong>${escapeHTML(student.id)}</strong>
     </div>
-
     <div class="identity-item">
       <span>Kelas</span>
       <strong>${escapeHTML(student.className)}</strong>
     </div>
-
     <div class="identity-item">
       <span>Jurusan</span>
-      <strong>${escapeHTML(student.major)}</strong>
+      <strong>${escapeHTML(student.major || "-")}</strong>
     </div>
-
     <div class="identity-item">
       <span>Tahun Ajaran</span>
-      <strong>${escapeHTML(student.academicYear)}</strong>
+      <strong>${escapeHTML(student.academicYear || "-")}</strong>
     </div>
-
     <div class="identity-item">
       <span>Semester</span>
       <strong>${escapeHTML(semesterNumber)}</strong>
     </div>
   `;
 
-  elements.reportTable.innerHTML = semester.subjects.map(
-    (subject, index) => `
+  // Mata pelajaran dan nilai
+  if (subjects.length === 0) {
+    elements.reportTable.innerHTML = `
       <tr>
-        <td>${index + 1}</td>
-        <td>${escapeHTML(subject.name)}</td>
-        <td>${subject.score}</td>
-        <td>${escapeHTML(getGrade(subject.score))}</td>
+        <td colspan="4" style="text-align:center;padding:20px">
+          Belum ada nilai untuk siswa ini.
+        </td>
       </tr>
-    `
-  ).join("");
+    `;
+  } else {
+    elements.reportTable.innerHTML = subjects.map((subject, index) => {
+      const score = Number(subject.score);
 
+      return `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHTML(subject.name)}</td>
+          <td>${Number.isFinite(score) ? score : "-"}</td>
+          <td>${Number.isFinite(score) ? escapeHTML(getGrade(score)) : "-"}</td>
+        </tr>
+      `;
+    }).join("");
+  }
+
+  // Rata-rata nilai
   elements.reportFooter.innerHTML = `
     <tr>
-      <td colspan="2">Rata-rata Nilai</td>
-      <td>${average.toFixed(2)}</td>
-      <td>${escapeHTML(getGrade(average))}</td>
+      <td colspan="2"><strong>Rata-rata Nilai</strong></td>
+      <td><strong>${average.toFixed(2)}</strong></td>
+      <td>${subjects.length ? escapeHTML(getGrade(average)) : "-"}</td>
     </tr>
   `;
 
+  // Rekap kehadiran
   elements.reportAttendance.innerHTML = `
     <tr>
       <td>${attendance.present} hari</td>
@@ -603,8 +647,9 @@ function renderReport() {
     </tr>
   `;
 
+  // Catatan wali kelas
   elements.teacherNote.textContent =
-    student.notes[semesterNumber] ||
+    student.notes?.[semesterNumber] ||
     "Belum ada catatan wali kelas.";
 }
 
